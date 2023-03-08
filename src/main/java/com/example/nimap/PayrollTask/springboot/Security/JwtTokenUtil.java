@@ -120,6 +120,6 @@ public class JwtTokenUtil implements Serializable {
 //        Claims claims = Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
 //        return (String) claims.get("type");
 //    }
-//	
+//
 
 }

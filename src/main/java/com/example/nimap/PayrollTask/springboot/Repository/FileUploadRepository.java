@@ -8,4 +8,6 @@ import com.example.nimap.PayrollTask.springboot.Entities.FileUploadEntity;
 @Repository
 public interface FileUploadRepository extends JpaRepository<FileUploadEntity, Long> {
 
+	void deleteByfilename(String filename);
+
 }

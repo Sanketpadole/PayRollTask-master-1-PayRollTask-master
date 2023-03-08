@@ -1,5 +1,8 @@
 package com.example.nimap.PayrollTask.springboot.ServiceImpl;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -9,6 +12,8 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -24,7 +29,6 @@ public class FileUploadImpl implements FileUploadInterface {
 
 	@Autowired
 	private FileUploadRepository fileUploadRepository;
-
 	private final Path fileStorageLocation;
 
 	public FileUploadImpl(FileStorageProperties fileStorageProperties) throws Exception {
@@ -66,6 +70,45 @@ public class FileUploadImpl implements FileUploadInterface {
 
 			throw new FileStorageException("Could not store file " + fileName + ". Please try again!", ex);
 
+		}
+	}
+
+	@Override
+	public Resource loadFileAsResource(String fileName) throws Exception {
+		try {
+
+			Path filePath = this.fileStorageLocation.resolve(fileName).normalize();
+			Resource resource = new UrlResource(filePath.toUri());
+
+			if (resource.exists()) {
+
+				return resource;
+
+			} else {
+
+				throw new Exception("File not found ");
+			}
+
+		} catch (MalformedURLException ex) {
+			throw new Exception("File not found");
+
+		}
+
+	}
+
+	@Override
+	public boolean delete(Long id) {
+		try {
+			FileUploadEntity uploadEntity = this.fileUploadRepository.findById(id)
+					.orElseThrow(() -> new FileNotFoundException("File not found"));
+
+			Path file = fileStorageLocation.resolve(uploadEntity.getFilename());
+
+			this.fileUploadRepository.deleteById(uploadEntity.getId());
+			return Files.deleteIfExists(file);
+
+		} catch (IOException e) {
+			throw new RuntimeException("Error: " + e.getMessage());
 		}
 	}
 }
