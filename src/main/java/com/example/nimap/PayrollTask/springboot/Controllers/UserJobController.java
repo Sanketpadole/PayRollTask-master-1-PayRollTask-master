@@ -50,7 +50,7 @@ public class UserJobController {
 				HttpStatus.OK);
 	}
 
-	@PreAuthorize("hasRole('userjobsview')")
+	// @PreAuthorize("hasRole('userjobsview')")
 	@GetMapping("/userjobsview")
 	ResponseEntity<?> getallcandidatesAndJobs(@RequestParam(defaultValue = "") String Search,
 			@RequestParam(defaultValue = "1") String pageNumber, @RequestParam(defaultValue = "20") String pageSize) {
@@ -86,7 +86,7 @@ public class UserJobController {
 				HttpStatus.OK);
 	}
 
-	//@PreAuthorize("hasRole('getuserJobbyuserjobId')")
+	// @PreAuthorize("hasRole('getuserJobbyuserjobId')")
 	@GetMapping()
 	public ResponseEntity<?> getuserJobbyuserjobId(@RequestParam(defaultValue = "") String userId,
 			@RequestParam(defaultValue = "") String jobId, @RequestParam(defaultValue = "1") String pageNo,

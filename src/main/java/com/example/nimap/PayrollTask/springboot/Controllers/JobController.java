@@ -33,7 +33,7 @@ public class JobController {
 	@Autowired
 	private JobsIntf jobsIntf;
 
-	@PreAuthorize("hasRole('jobsview')")
+	// @PreAuthorize("hasRole('jobsview')")
 	@GetMapping("/jobsview")
 	ResponseEntity<?> getallListofJobs(@RequestParam(defaultValue = "") String Search,
 			@RequestParam(defaultValue = "1") String pageNumber, @RequestParam(defaultValue = "20") String pageSize) {
