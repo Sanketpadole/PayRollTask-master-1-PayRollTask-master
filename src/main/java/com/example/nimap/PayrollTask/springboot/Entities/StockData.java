@@ -1,16 +1,53 @@
 package com.example.nimap.PayrollTask.springboot.Entities;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "stock")
 public class StockData {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+
+	private String information;
+
 	private String symbol;
-	private String open;
-	private String high;
-	private String low;
-	private String price;
-	private String volume;
-	private String latestTradingDay;
-	private String previousClose;
-	private String change;
-	private String changePercent;
+
+	private String Interval;
+
+	private String outputSize;
+
+	private String timeZone;
+
+	public StockData(Long id, String information, String symbol, String interval, String outputSize, String timeZone) {
+		super();
+		this.id = id;
+		this.information = information;
+		this.symbol = symbol;
+		Interval = interval;
+		this.outputSize = outputSize;
+		this.timeZone = timeZone;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getInformation() {
+		return information;
+	}
+
+	public void setInformation(String information) {
+		this.information = information;
+	}
 
 	public String getSymbol() {
 		return symbol;
@@ -20,96 +57,28 @@ public class StockData {
 		this.symbol = symbol;
 	}
 
-	public StockData() {
-		super();
-		// TODO Auto-generated constructor stub
+	public String getInterval() {
+		return Interval;
 	}
 
-	public StockData(String symbol, String open, String high, String low, String price, String volume,
-			String latestTradingDay, String previousClose, String change, String changePercent) {
-		super();
-		this.symbol = symbol;
-		this.open = open;
-		this.high = high;
-		this.low = low;
-		this.price = price;
-		this.volume = volume;
-		this.latestTradingDay = latestTradingDay;
-		this.previousClose = previousClose;
-		this.change = change;
-		this.changePercent = changePercent;
+	public void setInterval(String interval) {
+		Interval = interval;
 	}
 
-	public String getOpen() {
-		return open;
+	public String getOutputSize() {
+		return outputSize;
 	}
 
-	public void setOpen(String open) {
-		this.open = open;
+	public void setOutputSize(String outputSize) {
+		this.outputSize = outputSize;
 	}
 
-	public String getHigh() {
-		return high;
+	public String getTimeZone() {
+		return timeZone;
 	}
 
-	public void setHigh(String high) {
-		this.high = high;
-	}
-
-	public String getLow() {
-		return low;
-	}
-
-	public void setLow(String low) {
-		this.low = low;
-	}
-
-	public String getPrice() {
-		return price;
-	}
-
-	public void setPrice(String price) {
-		this.price = price;
-	}
-
-	public String getVolume() {
-		return volume;
-	}
-
-	public void setVolume(String volume) {
-		this.volume = volume;
-	}
-
-	public String getLatestTradingDay() {
-		return latestTradingDay;
-	}
-
-	public void setLatestTradingDay(String latestTradingDay) {
-		this.latestTradingDay = latestTradingDay;
-	}
-
-	public String getPreviousClose() {
-		return previousClose;
-	}
-
-	public void setPreviousClose(String previousClose) {
-		this.previousClose = previousClose;
-	}
-
-	public String getChange() {
-		return change;
-	}
-
-	public void setChange(String change) {
-		this.change = change;
-	}
-
-	public String getChangePercent() {
-		return changePercent;
-	}
-
-	public void setChangePercent(String changePercent) {
-		this.changePercent = changePercent;
+	public void setTimeZone(String timeZone) {
+		this.timeZone = timeZone;
 	}
 
 }

@@ -12,8 +12,6 @@ import com.example.nimap.PayrollTask.springboot.Dto.JobDto;
 
 public interface JobsIntf {
 
-	void addjobs(JobDto jobDto, HttpServletRequest request);
-
 	void updatejobs(Long id, JobDto jobDto);
 
 	void deletejobById(Long id);
@@ -21,5 +19,7 @@ public interface JobsIntf {
 	Page<IJobListDto> getallListofJobs(String search, String pageNumber, String pageSize);
 
 	List<IListRecruiterJobsListDto> getAllJobsByRecruiter(HttpServletRequest request);
+
+	void addjobs(JobDto jobDto, HttpServletRequest request, Long userId);
 
 }

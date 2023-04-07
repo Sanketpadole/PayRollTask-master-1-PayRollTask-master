@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,6 +27,7 @@ import com.example.nimap.PayrollTask.springboot.Dto.IListRecruiterJobsListDto;
 import com.example.nimap.PayrollTask.springboot.Dto.JobDto;
 import com.example.nimap.PayrollTask.springboot.Dto.SuccessResponseDto;
 import com.example.nimap.PayrollTask.springboot.Services.JobsIntf;
+import com.springboot.nimap.PayrollTask.springboot.Util.GlobalFunctions;
 
 @RestController
 @RequestMapping("/jobs")
@@ -53,14 +55,15 @@ public class JobController {
 
 	// @PreAuthorize("hasRole('jobadd')")
 	@PostMapping("/jobadd")
-	ResponseEntity<?> addjobs(@Valid @RequestBody JobDto jobDto, HttpServletRequest request) {
-
+	ResponseEntity<?> addjobs(@Valid @RequestBody JobDto jobDto, HttpServletRequest request,
+			@RequestAttribute(GlobalFunctions.CUSTUM_ATTRIBUTE_USER_ID) Long userId) {
+		System.err.println("SURAJ123");
 		if (jobDto.getJobName() == "") {
 
 			return new ResponseEntity<>(new ErrorResponseDto("Field is empty", "Failed!!"), HttpStatus.BAD_REQUEST);
 		} else {
 
-			jobsIntf.addjobs(jobDto, request);
+			jobsIntf.addjobs(jobDto, request, userId);
 			return new ResponseEntity<SuccessResponseDto>(new SuccessResponseDto("success", "success", jobDto),
 					HttpStatus.OK);
 		}

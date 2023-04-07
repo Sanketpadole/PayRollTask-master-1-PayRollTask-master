@@ -1,45 +1,84 @@
 package com.example.nimap.PayrollTask.springboot.Entities;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "stock_data")
 public class StockDataRequest {
 
-	private String function;
-	private String symbol;
-	private String apiKey;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	private String open;
+	private String high;
+	private String low;
+	private double closePrice;
+	private String volume;
 
-	public String getFunction() {
-		return function;
-	}
+	public StockDataRequest(Long id, String open, String high, String low, String close, String volume) {
+		super();
+		this.id = id;
+		this.open = open;
+		this.high = high;
+		this.low = low;
 
-	public void setFunction(String function) {
-		this.function = function;
-	}
-
-	public String getSymbol() {
-		return symbol;
-	}
-
-	public void setSymbol(String symbol) {
-		this.symbol = symbol;
-	}
-
-	public String getApiKey() {
-		return apiKey;
+		this.volume = volume;
 	}
 
 	public StockDataRequest() {
-		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public StockDataRequest(String function, String symbol, String apiKey) {
-		super();
-		this.function = function;
-		this.symbol = symbol;
-		this.apiKey = apiKey;
+	public Long getId() {
+		return id;
 	}
 
-	public void setApiKey(String apiKey) {
-		this.apiKey = apiKey;
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getOpen() {
+		return open;
+	}
+
+	public void setOpen(String open) {
+		this.open = open;
+	}
+
+	public String getHigh() {
+		return high;
+	}
+
+	public void setHigh(String high) {
+		this.high = high;
+	}
+
+	public String getLow() {
+		return low;
+	}
+
+	public void setLow(String low) {
+		this.low = low;
+	}
+
+	public double getClosePrice() {
+		return closePrice;
+	}
+
+	public void setClosePrice(double closePrice) {
+		this.closePrice = closePrice;
+	}
+
+	public String getVolume() {
+		return volume;
+	}
+
+	public void setVolume(String volume) {
+		this.volume = volume;
 	}
 
 }

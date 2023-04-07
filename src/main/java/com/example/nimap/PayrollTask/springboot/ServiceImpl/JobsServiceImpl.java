@@ -37,7 +37,7 @@ public class JobsServiceImpl implements JobsIntf {
 	private UserRepository userRepository;
 
 	@Override
-	public void addjobs(JobDto jobDto, HttpServletRequest request) {
+	public void addjobs(JobDto jobDto, HttpServletRequest request, Long userId) {
 
 		final String header = request.getHeader("Authorization");
 		String requestToken = header.substring(7);
@@ -50,6 +50,7 @@ public class JobsServiceImpl implements JobsIntf {
 		jobEntity.setDescription(jobDto.getDescription());
 
 		jobEntity.setJobName(jobDto.getJobName());
+		jobEntity.setCreatedBy(userId);
 
 		jobEntity.setRecruiterId(users);
 		jobRepository.save(jobEntity);

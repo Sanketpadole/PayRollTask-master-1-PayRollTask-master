@@ -36,9 +36,23 @@ public class JobEntity {
 	private Date createdAt;
 	@UpdateTimestamp
 	private Date updatedAt;
+	private Long createdBy;
+
+	public JobEntity(Long createdBy) {
+		super();
+		this.createdBy = createdBy;
+	}
+
+	public Long getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedBy(Long createdBy) {
+		this.createdBy = createdBy;
+	}
 
 	@JsonIgnore
-	@OneToOne(fetch = FetchType.LAZY,targetEntity = Users.class)
+	@OneToOne(fetch = FetchType.LAZY, targetEntity = Users.class)
 	@JoinColumn(name = "recruiter_id")
 	private Users recruiterId;
 
@@ -112,8 +126,8 @@ public class JobEntity {
 		this.userJobEntity = userJobEntity;
 	}
 
-	public JobEntity(Long id, String jobName, String description, Date createdAt, Date updatedAt,
-			Users recruiterId, boolean isActive, List<UserJobEntity> userJobEntity) {
+	public JobEntity(Long id, String jobName, String description, Date createdAt, Date updatedAt, Users recruiterId,
+			boolean isActive, List<UserJobEntity> userJobEntity) {
 		super();
 		this.id = id;
 		this.jobName = jobName;
