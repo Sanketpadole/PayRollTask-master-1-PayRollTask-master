@@ -37,7 +37,7 @@ public class JobController {
 
 	// @PreAuthorize("hasRole('jobsview')")
 	@GetMapping("/jobsview")
-	ResponseEntity<?> getallListofJobs(@RequestParam(defaultValue = "") String Search,
+	ResponseEntity<?> getallListofJobs12345(@RequestParam(defaultValue = "") String Search,
 			@RequestParam(defaultValue = "1") String pageNumber, @RequestParam(defaultValue = "20") String pageSize) {
 
 		Page<IJobListDto> Ijob = jobsIntf.getallListofJobs(Search, pageNumber, pageSize);
@@ -55,7 +55,7 @@ public class JobController {
 
 	// @PreAuthorize("hasRole('jobadd')")
 	@PostMapping("/jobadd")
-	ResponseEntity<?> addjobs(@Valid @RequestBody JobDto jobDto, HttpServletRequest request,
+	ResponseEntity<?> addjobs123(@Valid @RequestBody JobDto jobDto, HttpServletRequest request,
 			@RequestAttribute(GlobalFunctions.CUSTUM_ATTRIBUTE_USER_ID) Long userId) {
 		System.err.println("SURAJ123");
 		if (jobDto.getJobName() == "") {

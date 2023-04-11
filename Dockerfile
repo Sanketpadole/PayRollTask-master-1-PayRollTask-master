@@ -5,13 +5,18 @@ FROM openjdk:17-jdk-alpine3.13
 WORKDIR /app
 
 # Copy the application jar file to the container
-COPY target/my-spring-boot-app.jar /app/my-spring-boot-app.jar
+COPY target/springboot-0.0.1-SNAPSHOT.jar /app/springboot-0.0.1-SNAPSHOT.jar
+
+
+
+
+
 
 # Expose the port used by the application
 EXPOSE 8080
 
 # Start the application
-CMD ["java", "-jar", "/app/my-spring-boot-app.jar"]
+CMD ["java", "-jar", "/app/springboot-0.0.1-SNAPSHOT.jar"]
 
 
 
