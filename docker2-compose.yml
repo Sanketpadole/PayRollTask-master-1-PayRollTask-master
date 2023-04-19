@@ -1,0 +1,41 @@
+version: '3'
+services:
+  postgres-production:
+    image: postgres:latest
+    container_name: my_postgres_production_container
+    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: docker_production
+    ports:
+      - "5055:5432"
+    volumes:
+      - postgres-production-data:/var/lib/postgresql/data
+
+  app:
+    build: .
+    container_name: my_application_container
+    ports:
+      - "8085:8080"
+    depends_on:
+      - postgres-production
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-production:5432/docker_production
+      - SPRING_DATASOURCE_USERNAME=${SPRING_DATASOURCE_USERNAME}
+      - SPRING_DATASOURCE_PASSWORD=${SPRING_DATASOURCE_PASSWORD}
+    volumes:
+      - ./logs:/app/logs
+
+volumes:
+  postgres-production-data:
+
+
+  
+  
+
+  
+  
+  
+  
+  

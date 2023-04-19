@@ -1,44 +1,17 @@
-
 version: '3'
 services:
-  postgres-local:
+  postgres:
     image: postgres:latest
-    container_name: my_postgres_local_container
+    container_name: my_postgres_container
     restart: always
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: root
-      POSTGRES_DB: docker_local
+      POSTGRES_DB: docker
     ports:
       - "5053:5432"
     volumes:
-      - postgres-local-data:/var/lib/postgresql/data
-
-  postgres-testing:
-    image: postgres:latest
-    container_name: my_postgres_testing_container
-    restart: always
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: root
-      POSTGRES_DB: docker_testing
-    ports:
-      - "5054:5432"
-    volumes:
-      - postgres-testing-data:/var/lib/postgresql/data
-
-  postgres-production:
-    image: postgres:latest
-    container_name: my_postgres_production_container
-    restart: always
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: root
-      POSTGRES_DB: docker_production
-    ports:
-      - "5055:5432"
-    volumes:
-      - postgres-production-data:/var/lib/postgresql/data
+      - postgres-data:/var/lib/postgresql/data
 
   app:
     build: .
@@ -46,16 +19,22 @@ services:
     ports:
       - "8083:8080"
     depends_on:
-      - postgres-${APP_ENV:-production}
-    env_file:
-      - .env.${APP_ENV:-production}
-    volumes:
-      - ./logs:/app/logs
+      - postgres
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/docker
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: root
+
+  redis:
+    image: redis:latest
+    container_name: my_redis_container
+    restart: always
+    ports:
+      - "6379:6379"
 
 volumes:
-  postgres-local-data:
-  postgres-testing-data:
-  postgres-production-data:
+  postgres-data:
+
 
 
 

@@ -1,4 +1,3 @@
-# Set the base image to use
 FROM openjdk:17-jdk-alpine3.13
 
 # Set the working directory
@@ -7,42 +6,7 @@ WORKDIR /app
 # Copy the application jar file to the container
 COPY target/springboot-0.0.1-SNAPSHOT.jar /app/springboot-0.0.1-SNAPSHOT.jar
 
-ENV SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/docker_local
-ENV SPRING_DATASOURCE_USERNAME=postgres
-ENV SPRING_DATASOURCE_PASSWORD=root
-ENV SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.PostgreSQLDialect
-ENV SPRING_JPA_HIBERNATE_DDL_AUTO=update
-ENV SPRING_JPA_HIBERNATE_SHOW_SQL=true
-ENV SERVER_ERROR_INCLUDE_BINDING_ERRORS=always
-ENV SPRING_MAIN_ALLOW_CIRCULAR_REFERENCES=true
-ENV SPRING_JPA_OPEN_IN_VIEW=false
-
-
-
-ENV SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/docker_testing
-ENV SPRING_DATASOURCE_USERNAME=postgres
-ENV SPRING_DATASOURCE_PASSWORD=root
-ENV SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.PostgreSQLDialect
-ENV SPRING_JPA_HIBERNATE_DDL_AUTO=update
-ENV SPRING_JPA_HIBERNATE_SHOW_SQL=true
-ENV SERVER_ERROR_INCLUDE_BINDING_ERRORS=always
-ENV SPRING_MAIN_ALLOW_CIRCULAR_REFERENCES=true
-ENV SPRING_JPA_OPEN_IN_VIEW=false
-
-
-
-
-ENV SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/docker_production
-ENV SPRING_DATASOURCE_USERNAME=postgres
-ENV SPRING_DATASOURCE_PASSWORD=root
-ENV SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.PostgreSQLDialect
-ENV SPRING_JPA_HIBERNATE_DDL_AUTO=update
-ENV SPRING_JPA_HIBERNATE_SHOW_SQL=true
-ENV SERVER_ERROR_INCLUDE_BINDING_ERRORS=always
-ENV SPRING_MAIN_ALLOW_CIRCULAR_REFERENCES=true
-ENV SPRING_JPA_OPEN_IN_VIEW=false
-
-
+# Set environment variables for database configuration
 
 
 # Expose the port used by the application
@@ -50,6 +14,7 @@ EXPOSE 8080
 
 # Start the application
 CMD ["java", "-jar", "/app/springboot-0.0.1-SNAPSHOT.jar"]
+
 
 
 
