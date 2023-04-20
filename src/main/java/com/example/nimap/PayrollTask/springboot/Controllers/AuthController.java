@@ -136,7 +136,7 @@ public class AuthController {
 
 	}
 
-	@PostMapping("/forgotpass")
+	@PostMapping("/forgotpasss")
 	ResponseEntity<?> forgotpassword(@RequestBody OTPDto otpDto, HttpServletRequest request) {
 
 		try {
