@@ -164,7 +164,7 @@ public class AuthController {
 		}
 	}
 
-	@PutMapping("/forgot-pass-confirm")
+	@PutMapping("/forgot-pass-confirms")
 	public ResponseEntity<?> createForgotPasswordConfirm(@RequestBody ModelDto modelDto) throws Exception {
 
 		try {
