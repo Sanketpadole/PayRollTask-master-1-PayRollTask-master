@@ -212,7 +212,7 @@ public class AuthController {
 
 	}
 
-	@PostMapping("/refreshToken")
+	@PostMapping("/refreshTokens")
 	public ResponseEntity<?> refreshAndGetAuthenticationToken(@RequestParam(defaultValue = "") String refreshToken)
 			throws Exception {
 		String email = jwtTokenUtil.getUsernameFromToken(refreshToken);
